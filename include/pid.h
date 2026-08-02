@@ -1,13 +1,13 @@
 #pragma once
 
-namespace PID{
+class PID
+{
+public:
+    PID(double Kp, double Ki, double Kd, double integralStart);
+    double Calculate(double target, double current);
 
-    struct Values{
-        double Ki, Kp, Kd, integralStart;
-    };
-
-    double Calculate(Values v, double taget, double current);
-
-    void Reset(double newError);
-
+private:
+    double Ki, Kp, Kd, integralStart;
+    double errorThreshold;
+    double prevError = 0, integral = 0;
 };
